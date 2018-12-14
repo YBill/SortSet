@@ -11,47 +11,48 @@ public class QuickSort implements ISort {
         return newData;
     }
 
-    private void quickSort(int data[], int l, int r) {
-         /*
-         原理:找一个基准数将数组分为两部分,大于基准数的都在右边,小于基准数的都在左边,然后将分成的两部分再分别以基准数的方式分成两部分，后面以此类推
+    private void quickSort(int data[], int low, int high) {
+        /*
+         * 原理:找一个基准数将数组分为三部分,基准数在中间，大于基准数的都在右边,小于基准数的都在左边
+         * 然后再将基准数左右两边再分别以这种方式再分，后面以此类推，最终不能再分了，说明分成的每个小数组都有序了，整个数组也就有序了
          */
-        if (l < r) { // l<r用来终止递归
-            int i = l, j = r;
-            int key = data[l]; // 选数组中第一个数为基准数
+        if (low < high) { // low<high用来终止递归
+            int left = low, right = high;
+            int key = data[low]; // 选数组中第一个数为基准数
             /*
-            最外层循环首先以基准数key将数组分为大于key和小于key的两部分,i=j时最外层循环结束
+            最外层循环首先以基准数key将数组分为大于key和小于key的两部分,left=right时最外层循环结束
             */
-            while (i < j) {
+            while (left < right) {
                 /*
-                当myInt[j]小于基准数时将myInt[i]换为myInt[j],并结束当前循环,否则j向前走继续查找小于基准数的myInt
+                当myInt[right]小于基准数时将myInt[left]换为myInt[right],并结束当前循环,否则j向前走继续查找小于基准数的myInt
                 */
-                while (i < j) {
-                    if (data[j] < key) {
-                        // 将i+1,此处i不是必须要+1的，不+1结果一样，不过每次多比较一个
-                        data[i++] = data[j];
+                while (left < right) {
+                    if (data[right] < key) {
+                        // 将left+1,此处left不是必须要+1的，不+1结果一样，不过每次多比较一个
+                        data[left++] = data[right];
                         break;
                     } else {
-                        j--;
+                        right--;
                     }
                 }
 
                 /*
-                当myInt[i]大于基准数时将myInt[j]换为myInt[i],并结束当前循环,否则i向后走继续查找大于基准数的myInt
+                当myInt[left]大于基准数时将myInt[right]换为myInt[left],并结束当前循环,否则left向后走继续查找大于基准数的myInt
                 */
-                while (i < j) {
-                    if (data[i] > key) {
+                while (left < right) {
+                    if (data[left] > key) {
                         //j--同上
-                        data[j--] = data[i];
+                        data[right--] = data[left];
                         break;
                     } else {
-                        i++;
+                        left++;
                     }
                 }
             }
 
-            data[i] = key; // 最后将基准数给myInt[i]
-            quickSort(data, l, i - 1); // 递归调用排基准数左边的数组
-            quickSort(data, i + 1, r); // 递归调用排基准数右边的数组
+            data[left] = key; // 最后将基准数给myInt[left]
+            quickSort(data, low, left - 1); // 递归调用排基准数左边的数组
+            quickSort(data, left + 1, high); // 递归调用排基准数右边的数组
         }
     }
 
