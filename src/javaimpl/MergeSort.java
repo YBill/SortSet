@@ -25,28 +25,28 @@ public class MergeSort implements ISort {
 
     private void merge(int[] data, int low, int mid, int high) {
         int[] temp = new int[high - low + 1];
-        int i = low;// 左指针
-        int j = mid + 1;// 右指针
+        int left = low;// 左指针
+        int right = mid + 1;// 右指针
         int k = 0;
         // 把较小的数先移到新数组中
-        while (i <= mid && j <= high) {
-            if (data[i] <= data[j]) { // <= 的话原始位置不变即稳定排序
-                temp[k++] = data[i++];
+        while (left <= mid && right <= high) {
+            if (data[left] <= data[right]) { // <= 的话原始位置不变即稳定排序
+                temp[k++] = data[left++];
             } else {
-                temp[k++] = data[j++];
+                temp[k++] = data[right++];
             }
         }
         // 把左边剩余的数移入数组
-        while (i <= mid) {
-            temp[k++] = data[i++];
+        while (left <= mid) {
+            temp[k++] = data[left++];
         }
         // 把右边边剩余的数移入数组
-        while (j <= high) {
-            temp[k++] = data[j++];
+        while (right <= high) {
+            temp[k++] = data[right++];
         }
         // 把新数组中的数覆盖data数组
-        for (int i2 = 0; i2 < temp.length; i2++) {
-            data[i2 + low] = temp[i2];
+        for (int i = 0; i < temp.length; i++) {
+            data[i + low] = temp[i];
         }
     }
 
