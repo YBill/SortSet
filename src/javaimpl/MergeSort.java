@@ -2,6 +2,10 @@ package javaimpl;
 
 import inter.ISort;
 
+/**
+ * Created by Bill on 2018/12/19.
+ * 归并排序
+ */
 public class MergeSort implements ISort {
 
     @Override

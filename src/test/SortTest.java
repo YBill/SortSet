@@ -7,7 +7,7 @@ import java.util.Arrays;
 public class SortTest {
 
     public static void main(String[] args) {
-        int[] data = {12, 20, 5, 16, 15, 1, 30, 45, 23, 9};
+        int[] data = {10, 20, 5, 16, 15, 1, 30, 45, 23, 9};
 
         System.out.print("原始数据：");
         System.out.println(Arrays.toString(data));
@@ -31,6 +31,18 @@ public class SortTest {
         System.out.print("快速排序：");
         QuickSort quickSort = new QuickSort();
         System.out.println(Arrays.toString(quickSort.sort(data)));
+
+        System.out.print("桶  排序：");
+        BucketSort bucketSort = new BucketSort();
+        System.out.println(Arrays.toString(bucketSort.sort(data)));
+
+        System.out.print("计数排序：");
+        CountSort countSort = new CountSort();
+        System.out.println(Arrays.toString(countSort.sort(data)));
+
+        System.out.print("基数排序：");
+        RadixSort radixSort = new RadixSort();
+        System.out.println(Arrays.toString(radixSort.sort(data)));
 
     }
 
