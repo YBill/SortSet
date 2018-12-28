@@ -24,6 +24,10 @@ public class SortTest {
         InsertSort insertSort = new InsertSort();
         System.out.println(Arrays.toString(insertSort.sort(data)));
 
+        System.out.print("希尔排序：");
+        ShellSort shellSort = new ShellSort();
+        System.out.println(Arrays.toString(shellSort.sort(data)));
+
         System.out.print("归并排序：");
         MergeSort mergeSort = new MergeSort();
         System.out.println(Arrays.toString(mergeSort.sort(data)));
