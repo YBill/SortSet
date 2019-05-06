@@ -36,6 +36,10 @@ public class SortTest {
         QuickSort quickSort = new QuickSort();
         System.out.println(Arrays.toString(quickSort.sort(data)));
 
+        System.out.print("堆  排序：");
+        HeapSort heapSort = new HeapSort();
+        System.out.println(Arrays.toString(heapSort.sort(data)));
+
         System.out.print("桶  排序：");
         BucketSort bucketSort = new BucketSort();
         System.out.println(Arrays.toString(bucketSort.sort(data)));

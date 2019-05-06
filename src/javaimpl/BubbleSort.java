@@ -5,6 +5,15 @@ import inter.ISort;
 /**
  * Created by Bill on 2018/12/19.
  * 冒泡排序
+ * <p>
+ * 原地排序
+ * 稳定排序
+ * <p>
+ * 额外空间O(1)
+ * <p>
+ * 最好O(n)
+ * 最坏O(n*n)
+ * 平均O(n*n)
  */
 public class BubbleSort implements ISort {
 

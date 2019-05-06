@@ -5,6 +5,15 @@ import inter.ISort;
 /**
  * Created by Bill on 2018/12/19.
  * 快速排序
+ * <p>
+ * 原地排序
+ * 不稳定排序
+ * <p>
+ * 额外空间O(logn)
+ * <p>
+ * 最好O(nlogn)
+ * 最坏O(n*n)
+ * 平均O(nlogn)
  */
 public class QuickSort implements ISort {
 

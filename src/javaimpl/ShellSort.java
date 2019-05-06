@@ -4,7 +4,16 @@ import inter.ISort;
 
 /**
  * Created by Bill on 2018/12/28.
- * 希尔排序
+ * 希尔排序(插入排序的改进版)
+ * <p>
+ * 原地排序
+ * 不稳定排序
+ * <p>
+ * 额外空间O(1)
+ * <p>
+ * 最好O(n)
+ * 最坏O(n*n)
+ * 平均O(n^1.3)（n的1.3次方）
  */
 public class ShellSort implements ISort {
 

@@ -5,6 +5,15 @@ import inter.ISort;
 /**
  * Created by Bill on 2018/12/19.
  * 归并排序
+ * <p>
+ * 非原地排序
+ * 稳定排序
+ * <p>
+ * 额外空间O(n)
+ * <p>
+ * 最好O(nlogn)
+ * 最坏O(nlogn)
+ * 平均O(nlogn)
  */
 public class MergeSort implements ISort {
 
