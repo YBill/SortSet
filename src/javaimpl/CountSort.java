@@ -9,10 +9,8 @@ import inter.ISort;
 public class CountSort implements ISort {
 
     @Override
-    public int[] sort(int[] data) {
-        int[] newData = newArray(data);
-        countSort(newData);
-        return newData;
+    public void sort(int[] data) {
+        countSort(data);
     }
 
     private void countSort(int[] data) {

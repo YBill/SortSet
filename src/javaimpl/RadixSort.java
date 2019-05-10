@@ -9,10 +9,8 @@ import inter.ISort;
 public class RadixSort implements ISort {
 
     @Override
-    public int[] sort(int[] data) {
-        int[] newData = newArray(data);
-        radixSort(newData);
-        return newData;
+    public void sort(int[] data) {
+        radixSort(data);
     }
 
     private void radixSort(int[] data) {

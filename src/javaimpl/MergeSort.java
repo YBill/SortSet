@@ -18,10 +18,8 @@ import inter.ISort;
 public class MergeSort implements ISort {
 
     @Override
-    public int[] sort(int[] data) {
-        int[] newData = newArray(data);
-        mergeSort(newData, 0, newData.length - 1);
-        return newData;
+    public void sort(int[] data) {
+        mergeSort(data, 0, data.length - 1);
     }
 
     private void mergeSort(int[] data, int low, int high) {

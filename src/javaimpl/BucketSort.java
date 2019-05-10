@@ -13,10 +13,8 @@ import java.util.List;
 public class BucketSort implements ISort {
 
     @Override
-    public int[] sort(int[] data) {
-        int[] newData = newArray(data);
-        bucketSort(newData);
-        return newData;
+    public void sort(int[] data) {
+        bucketSort(data);
     }
 
     private void bucketSort(int[] data) {

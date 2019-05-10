@@ -18,10 +18,8 @@ import inter.ISort;
 public class HeapSort implements ISort {
 
     @Override
-    public int[] sort(int[] data) {
-        int[] newData = newArray(data);
-        heapSort(newData, newData.length);
-        return newData;
+    public void sort(int[] data) {
+        heapSort(data, data.length);
     }
 
     private void heapSort(int[] arr, int n) {

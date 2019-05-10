@@ -18,10 +18,8 @@ import inter.ISort;
 public class QuickSort implements ISort {
 
     @Override
-    public int[] sort(int[] data) {
-        int[] newData = newArray(data);
-        quickSort(newData, 0, newData.length - 1);
-        return newData;
+    public void sort(int[] data) {
+        quickSort(data, 0, data.length - 1);
     }
 
     private void quickSort(int data[], int low, int high) {

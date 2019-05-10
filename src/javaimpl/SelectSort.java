@@ -18,21 +18,19 @@ import inter.ISort;
 public class SelectSort implements ISort {
 
     @Override
-    public int[] sort(int[] data) {
-        int[] newData = newArray(data);
-        for (int i = 0; i < newData.length - 1; i++) {
+    public void sort(int[] data) {
+        for (int i = 0; i < data.length - 1; i++) {
             int k = i;
-            for (int j = k + 1; j < newData.length; j++) {
-                if (newData[j] < newData[k]) {
+            for (int j = k + 1; j < data.length; j++) {
+                if (data[j] < data[k]) {
                     k = j;
                 }
             }
             if (i != k) {
-                int temp = newData[i];
-                newData[i] = newData[k];
-                newData[k] = temp;
+                int temp = data[i];
+                data[i] = data[k];
+                data[k] = temp;
             }
         }
-        return newData;
     }
 }
