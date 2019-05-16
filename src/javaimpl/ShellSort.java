@@ -19,9 +19,12 @@ public class ShellSort implements ISort {
 
     @Override
     public void sort(int[] data) {
-        int length = data.length;
-        for (int step = length / 2; step > 0; step /= 2) {
-            for (int rightShift = step; rightShift < length; rightShift++) {
+        sort(data, data.length);
+    }
+
+    private void sort(int[] data, int n) {
+        for (int step = n / 2; step > 0; step /= 2) {
+            for (int rightShift = step; rightShift < n; rightShift++) {
                 int compareData = data[rightShift];
                 int leftShift = rightShift;
                 while (leftShift - step >= 0 && data[leftShift - step] > compareData) {

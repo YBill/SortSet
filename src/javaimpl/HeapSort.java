@@ -30,10 +30,7 @@ public class HeapSort implements ISort {
 
         // sort
         for (int i = n - 1; i > 0; i--) {
-            int temp = arr[0];
-            arr[0] = arr[i];
-            arr[i] = temp;
-
+            swap(arr, 0, i);
             shiftDown(arr, i, 0);
         }
     }
@@ -49,10 +46,7 @@ public class HeapSort implements ISort {
                 break;
             }
 
-            int temp = arr[k];
-            arr[k] = arr[j];
-            arr[j] = temp;
-
+            swap(arr, k, j);
             k = j;
 
         }

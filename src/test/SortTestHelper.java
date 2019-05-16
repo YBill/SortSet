@@ -7,7 +7,7 @@ public enum SortTestHelper {
 
     INSTANCE;
 
-    private Random random = new Random(37);
+    private Random random = new Random();
 
     public void checkSortOrder(String sortName, int[] arr, int n) {
         if (isSorted(arr, n)) {
@@ -55,6 +55,31 @@ public enum SortTestHelper {
         for (int i = 0; i < n; i++) {
             arr[i] = random.nextInt(rangeR - rangeL + 1) + rangeL;
         }
+        return arr;
+    }
+
+    /**
+     * 生成近乎有序的随机数组
+     *
+     * @param n         数组大小
+     * @param swapTimes 有序度，越大越无序，0时完全有序
+     * @return
+     */
+    public int[] generateNearlyOrderedArray(int n, int swapTimes) {
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = i;
+        }
+
+        for (int i = 0; i < swapTimes; i++) {
+            int posX = random.nextInt(n);
+            int posY = random.nextInt(n);
+
+            int temp = arr[posX];
+            arr[posX] = arr[posY];
+            arr[posY] = temp;
+        }
+
         return arr;
     }
 

@@ -2,6 +2,8 @@ package javaimpl;
 
 import inter.ISort;
 
+import java.util.Random;
+
 /**
  * Created by Bill on 2018/12/19.
  * 快速排序
@@ -17,54 +19,60 @@ import inter.ISort;
  */
 public class QuickSort implements ISort {
 
+    private Random random;
+
     @Override
     public void sort(int[] data) {
+        random = new Random();
+
         quickSort(data, 0, data.length - 1);
     }
 
-    private void quickSort(int data[], int low, int high) {
-        /*
-         * 原理:找一个基准数将数组分为三部分,基准数在中间，大于基准数的都在右边,小于基准数的都在左边
-         * 然后再将基准数左右两边再分别以这种方式再分，后面以此类推，最终不能再分了，说明分成的每个小数组都有序了，整个数组也就有序了
-         */
-        if (low < high) { // low<high用来终止递归
-            int left = low, right = high;
-            int key = data[low]; // 选数组中第一个数为基准数
-            /*
-            最外层循环首先以基准数key将数组分为大于key和小于key的两部分,left=right时最外层循环结束
-            */
-            while (left < right) {
-                /*
-                当myInt[right]小于基准数时将myInt[left]换为myInt[right],并结束当前循环,否则j向前走继续查找小于基准数的myInt
-                */
-                while (left < right) {
-                    if (data[right] < key) {
-                        // 将left+1,此处left不是必须要+1的，不+1结果一样，不过每次多比较一个
-                        data[left++] = data[right];
-                        break;
-                    } else {
-                        right--;
-                    }
-                }
-
-                /*
-                当myInt[left]大于基准数时将myInt[right]换为myInt[left],并结束当前循环,否则left向后走继续查找大于基准数的myInt
-                */
-                while (left < right) {
-                    if (data[left] > key) {
-                        //j--同上
-                        data[right--] = data[left];
-                        break;
-                    } else {
-                        left++;
-                    }
-                }
-            }
-
-            data[left] = key; // 最后将基准数给myInt[left]
-            quickSort(data, low, left - 1); // 递归调用排基准数左边的数组
-            quickSort(data, left + 1, high); // 递归调用排基准数右边的数组
+    private void quickSort(int[] data, int left, int right) {
+        if (left >= right) {
+            return;
         }
+
+        int p = partition(data, left, right);
+        quickSort(data, left, p - 1);
+        quickSort(data, p + 1, right);
+
+    }
+
+    /**
+     * 对data[l...r]部分进行partition操作
+     * <p>
+     * 原理：
+     *
+     * @return p  返回p(p的位置已经是正确的了)，使得data[left...p-1] < data[p]; data[p+1...right] > data[p]
+     */
+    private int partition(int[] data, int left, int right) {
+        // 下面取第一个数为基准数，如果数组本来就是有序数组或有序度比较大时，此时排序近乎是链表，时间复杂度退化为O(n*n)
+        // 为了避免这种现象每次取数组中的随机位置，然后和第一个数交换一下位置即可
+        int randomPos = random.nextInt(right - left + 1) + left;
+        swap(data, randomPos, left);
+
+        int key = data[left]; // 取第一个数为基准数
+
+        // data[left+1...i) <= key; data(j...right] >= key
+        int i = left + 1, j = right;
+
+        while (true) {
+            while (i <= right && data[i] < key) i++;
+            while (j >= left + 1 && data[j] > key) j--;
+            if (i > j) break;
+
+            swap(data, i, j);
+
+            i++;
+            j--;
+        }
+
+        // 交换l和j的位置，交换后data[j]的值已经是正确的位置了
+        swap(data, left, j);
+
+        return j;
+
     }
 
 }

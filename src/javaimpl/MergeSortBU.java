@@ -3,45 +3,26 @@ package javaimpl;
 import inter.ISort;
 
 /**
- * Created by Bill on 2018/12/19.
- * 归并排序
+ * 自底向上的归并排序
  * <p>
- * 非原地排序
- * 稳定排序
- * <p>
- * 额外空间O(n)
- * <p>
- * 最好O(nlogn)
- * 最坏O(nlogn)
- * 平均O(nlogn)
+ * 同{@link MergeSort} 不用递归直接遍历
+ * 因为数组没使用过索引，故可以以nlogn对链表进行排序
  */
-public class MergeSort implements ISort {
-
+public class MergeSortBU implements ISort {
     @Override
     public void sort(int[] data) {
-        mergeSort(data, 0, data.length - 1);
+        sort(data, data.length);
     }
 
-    // 递归使用归并排序，对data[l...r]的范围进行排序
-    private void mergeSort(int[] data, int low, int high) {
-        if (low >= high) {
-            return;
+    private void sort(int[] data, int n) {
+        for (int sz = 1; sz <= n; sz += sz) {
+            for (int i = 0; i + sz < n; i += sz + sz) {
+                // 对data[i...i + sz - 1]和data[i + sz...i + 2*sz - 1]两部分进行归并
+                merge(data, i, i + sz - 1, min(i + sz + sz - 1, n - 1));
+            }
         }
-
-        int mid = low + (high - low) / 2; // int mid = (low + high) / 2 存在数值太大溢出问题
-
-        // 左边
-        mergeSort(data, low, mid);
-
-        // 右边
-        mergeSort(data, mid + 1, high);
-
-        // 左右归并
-//        if (data[mid] > data[mid + 1]) // 这个判断可以对几乎有序的数据进行优化
-        merge(data, low, mid, high);
     }
 
-    // 将data[low...mid]和data[mid+1...high]两部分进行归并
     private void merge(int[] data, int low, int mid, int high) {
         int[] temp = new int[high - low + 1];
         int left = low;// 左指针
@@ -67,6 +48,10 @@ public class MergeSort implements ISort {
         for (int i = 0; i < temp.length; i++) {
             data[i + low] = temp[i];
         }
+    }
+
+    private int min(int a, int b) {
+        return (a <= b) ? a : b;
     }
 
 }

@@ -19,18 +19,21 @@ public class SelectSort implements ISort {
 
     @Override
     public void sort(int[] data) {
-        for (int i = 0; i < data.length - 1; i++) {
+        sort(data, data.length);
+    }
+
+    private void sort(int[] data, int n) {
+        for (int i = 0; i < n - 1; i++) {
             int k = i;
-            for (int j = k + 1; j < data.length; j++) {
+            for (int j = k + 1; j < n; j++) {
                 if (data[j] < data[k]) {
                     k = j;
                 }
             }
             if (i != k) {
-                int temp = data[i];
-                data[i] = data[k];
-                data[k] = temp;
+                swap(data, i, k);
             }
         }
     }
+
 }
